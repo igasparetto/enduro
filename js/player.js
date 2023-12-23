@@ -59,14 +59,11 @@ class Player {
     }
   }
   moveRL(direction, boundariesPoints) {
-    console.log({direction, boundariesPoints})
     if (this.game.gameIsPaused || !this.game.gameInPlay) {
-      console.log(11)
       return false;
     }
     if (direction < 0) {
       if (this.player.style.left == "0px" || this.isSideCrash(boundariesPoints.left)) {
-        console.log(12)
         return false;
       }
     } else if (direction > 0) {
@@ -74,11 +71,9 @@ class Player {
         this.playerPositions.x >= this.game.gameSizes.width - this.game.carSizes.width ||
         this.isSideCrash(boundariesPoints.right)
       ) {
-        console.log(13)
         return false;
       }
     }
-    console.log(14)
     this.playerPositions.x = this.playerPositions.x + direction;
     this.player.style.left = this.playerPositions.x + "px";
     return true;
