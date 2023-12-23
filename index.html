@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Enduro - Ivan Gasparetto</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel='stylesheet' type='text/css' media='screen' href='css/main.css?v1'>
+</head>
+
+<body>
+  <div id="wrapper">
+    <header>
+      <h1>ENDURO</h1>
+    </header>
+    <main id="main">
+      <div id="scene" class="summer day">
+        <div id="gameWrapper">
+          <div id="game" tabindex="0">
+            <div id="sky"></div>
+            <div id="land"></div>
+          </div>
+        </div>
+        <div id="controls">
+          <p id="currentScene">summer day</p>
+          <button class="btn" id="start">Start</button>
+          <div>
+            <button class="btn" id="btnLeft">&#8678;</button>
+            <button class="btn" id="btnRight">&#8680;</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; Ivan Gasparetto</p>
+    </footer>
+  </div>
+  <!-- classes -->
+  <script src="js/tracks.js?v1"></script>
+  <script src="js/enemyCar.js?v1"></script>
+  <script src="js/player.js?v1"></script>
+  <script src="js/scene.js?v1"></script>
+
+  <!-- config -->
+  <script src="js/config.js?v1"></script>
+  <!-- put all together -->
+  <script src="js/main.js?v1"></script>
+</body>
+
+</html>
