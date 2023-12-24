@@ -65,12 +65,16 @@ class Player {
       return false;
     }
     if (direction < 0) {
-      if (this.player.style.left == "0px" || this.isSideCrash(boundariesPoints.left)) {
+      if (
+        this.player.style.left == "0px" ||
+        this.isSideCrash(boundariesPoints.left)
+      ) {
         return false;
       }
     } else if (direction > 0) {
       if (
-        this.playerPositions.x >= this.game.gameSizes.width - this.game.carSizes.width ||
+        this.playerPositions.x >=
+          this.game.gameSizes.width - this.game.carSizes.width ||
         this.isSideCrash(boundariesPoints.right)
       ) {
         return false;

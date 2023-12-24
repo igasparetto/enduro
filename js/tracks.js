@@ -57,7 +57,7 @@ class TrackLines {
 
     if (!this.game.roadCurving) {
       this.container.classList.remove("moving-left", "moving-right");
-    } else if (this.apex.x < this.game.centerWidth / 2) {
+    } else if (this.apex.x < this.game.centerWidth) {
       this.container.classList.remove("moving-right");
       this.container.classList.add("moving-left");
     } else {
