@@ -108,8 +108,8 @@ let gameTick = setInterval(function () {
 
   game.atCenter = gameSizes.width / 2 - 10 < X && X < gameSizes.width / 2 + 10;
 
-  for (i = 0; i < enemyCar.otherCars.length; i++) {
-    enemyCar.moveOtherCar(
+  for (i = 0; i < enemyCar.cars.length; i++) {
+    enemyCar.moveEnemyCar(
       i,
       clockCounter % otherCarSpeed == 0,
       trackLines.getApex(),

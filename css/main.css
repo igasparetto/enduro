@@ -45,17 +45,17 @@ footer, p {
 
 @keyframes mountainsToRight {
   from {
-    background-position: 0 0;
+    background-position: 0 bottom;
   }
   to {
-    background-position: 100% 0;
+    background-position: 100% bottom;
   }
 }
 #sky::after, #sky::after {
   width: 200%;
-  height: 20px;
+  height: 100%;
   background-image: url(../image/mountains-day.png);
-  background-position: 0px 0px;
+  background-position: 0px bottom;
   background-repeat: repeat-x;
   position: absolute;
   bottom: 0;
@@ -82,17 +82,17 @@ footer, p {
 .autumn.sunrise #sky, .autumn.sunset #sky {background-color: rgb(41, 34, 119);}
 .autumn #sky {background-color: rgb(136, 190, 245);}
 .autumn.sunrise #land, .autumn.sunset #land {background-color: rgb(6, 49, 3);}
-.autumn #land {background-color: rgb(15, 118, 5);}
+.autumn #land {background-color: rgb(52, 79, 4);}
 /* winter */
 .winter.sunrise #sky, .winter.sunset #sky {background-color: rgb(13, 9, 58);}
 .winter #sky {background-color: rgb(49, 35, 203);}
-.winter.sunrise #land, .winter.sunset #land {background-color: rgb(78, 85, 99);}
+.winter.sunrise #land, .winter.sunset #land {background-color: rgb(148, 149, 153);}
 .winter #land {background-color: rgb(227, 227, 227);}
 /* spring */
 .spring.sunrise #sky, .spring.sunset #sky {background-color: rgb(32, 22, 134);}
 .spring #sky {background-color: rgb(136, 190, 245);}
 .spring.sunrise #land, .spring.sunset #land {background-color: rgb(6, 49, 3);}
-.spring #land {background-color: rgb(15, 118, 5);}
+.spring #land {background-color: rgb(52, 79, 4);}
 /* night */
 .night #sky {background-color: rgb(19, 19, 19);}
 .night #land {background-color: rgb(8, 8, 8);}
