@@ -13,19 +13,29 @@ class Game {
   enemyCar;
   player;
 
-  gameTickSpeed = 100;
+  currentSpeed = 1;
+  gameTickSpeeds = [
+    80,
+    70,
+    60,
+    50,
+    40,
+    30,
+    20,
+    10
+  ]
 
   maxX;
   minX;
 
   direction = 1;
   stop = false;
-  countStopReset = 115;
+  countStopReset = 100;
   countStop;
 
   enemyCarSpeed = 1;
   clockCounter = 0;
-  lineDivider = 8;
+  lineDivider = 24;
   dividerCounter = 0;
 
   constructor(container, carSizes) {
@@ -50,11 +60,33 @@ class Game {
     this.countStop = this.countStopReset;
 
     document.body.classList.add("paused");
+    document.body.classList.add("speed-1");
+  }
+  speedUp() {
+    if(this.currentSpeed < this.gameTickSpeeds.length-1)
+      this.currentSpeed++;
+    clearInterval(this.gameTick);
+    this.gameOnMove();
+    return this.currentSpeed;
+  }
+  speedDown() {
+    if(this.currentSpeed > 0)
+      this.currentSpeed--;
+    clearInterval(this.gameTick);
+    this.gameOnMove();
+    return this.currentSpeed;
   }
   gameOnMove() {
     // make tracks move
     let _this = this;
     document.body.classList.remove("paused");
+
+    document.body.classList.remove("speed-1");
+    document.body.classList.remove("speed-2");
+    document.body.classList.remove("speed-3");
+    document.body.classList.remove("speed-4");
+    document.body.classList.remove("speed-5");
+    document.body.classList.add("speed-" + (this.currentSpeed + 1));
 
     this.gameTick = setInterval(function () {
       // move tracks
@@ -104,7 +136,7 @@ class Game {
       if (_this.clockCounter == 100) {
         _this.clockCounter = 0;
       }
-    }, this.gameTickSpeed);
+    }, this.gameTickSpeeds[this.currentSpeed]);
   }
   play() {
     if(!this.gameInPlay) {

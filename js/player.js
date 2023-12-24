@@ -1,8 +1,7 @@
 class Player {
-  constructor(carMoveByPixels, boundaryTileSize, game) {
+  constructor(carMoveByPixels, game) {
     this.possibleCarPaths = possibleCarPaths;
     this.carMoveByPixels = carMoveByPixels;
-    this.boundaryTileSize = boundaryTileSize;
     this.game = game;
     this.playerPositions = {
       x: this.game.gameSizes.width / 2 - this.game.carSizes.width / 2,
@@ -51,8 +50,8 @@ class Player {
           {
             x: data[i].x,
             y: data[i].y,
-            width: this.boundaryTileSize,
-            height: this.boundaryTileSize,
+            width: 1, // old boundaryTileSize
+            height: 1,
           }
         )
       ) {

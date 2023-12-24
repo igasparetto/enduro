@@ -6,86 +6,101 @@
   background-image: url(../image/car-1-grey.png);
 }
 
-.car.player{ animation: playerCar 0.4s infinite;}
+.speed-1 .car.player{ animation: playerCar 0.4s infinite;}
 .speed-2 .car.player{ animation: playerCar 0.3s infinite;}
 .speed-3 .car.player{ animation: playerCar 0.2s infinite;}
 .speed-4 .car.player{ animation: playerCar 0.1s infinite;}
 .speed-5 .car.player{ animation: playerCar 0.05s infinite;}
+.car.player{ animation: playerCar 0.04s infinite;}
 @keyframes playerCar{
   0%,100%  {background-image: url("../image/car-1-grey.png");}
   50% {background-image: url("../image/car-2-grey.png");}
 }
 
-.car.blue{ animation: blueCar 0.4s infinite;}
+.speed-1 .car.blue{ animation: blueCar 0.4s infinite;}
 .speed-2 .car.blue{ animation: blueCar 0.3s infinite;}
 .speed-3 .car.blue{ animation: blueCar 0.2s infinite;}
 .speed-4 .car.blue{ animation: blueCar 0.1s infinite;}
 .speed-5 .car.blue{ animation: blueCar 0.05s infinite;}
+.car.blue{ animation: blueCar 0.04s infinite;}
 @keyframes blueCar{
   0%,100%  {background-image: url("../image/car-1-blue.png");}
   50% {background-image: url("../image/car-2-blue.png");}
 }
 
-.car.green{ animation: greenCar 0.4s infinite;}
+.speed-1 .car.green{ animation: greenCar 0.4s infinite;}
 .speed-2 .car.green{ animation: greenCar 0.3s infinite;}
 .speed-3 .car.green{ animation: greenCar 0.2s infinite;}
 .speed-4 .car.green{ animation: greenCar 0.1s infinite;}
 .speed-5 .car.green{ animation: greenCar 0.05s infinite;}
+.car.green{ animation: greenCar 0.04s infinite;}
 @keyframes greenCar{
   0%,100%  {background-image: url("../image/car-1-green.png");}
   50% {background-image: url("../image/car-2-green.png");}
 }
 
-.car.orange{ animation: orangeCar 0.4s infinite;}
+.speed-1 .car.orange{ animation: orangeCar 0.4s infinite;}
 .speed-2 .car.orange{ animation: orangeCar 0.3s infinite;}
 .speed-3 .car.orange{ animation: orangeCar 0.2s infinite;}
 .speed-4 .car.orange{ animation: orangeCar 0.1s infinite;}
 .speed-5 .car.orange{ animation: orangeCar 0.05s infinite;}
+.car.orange{ animation: orangeCar 0.04s infinite;}
 @keyframes orangeCar{
   0%,100%  {background-image: url("../image/car-1-orange.png");}
   50% {background-image: url("../image/car-2-orange.png");}
 }
 
-.car.pink{ animation: pinkCar 0.4s infinite;}
+.speed-1 .car.pink{ animation: pinkCar 0.4s infinite;}
 .speed-2 .car.pink{ animation: pinkCar 0.3s infinite;}
 .speed-3 .car.pink{ animation: pinkCar 0.2s infinite;}
 .speed-4 .car.pink{ animation: pinkCar 0.1s infinite;}
 .speed-5 .car.pink{ animation: pinkCar 0.05s infinite;}
+.car.pink{ animation: pinkCar 0.04s infinite;}
 @keyframes pinkCar{
   0%,100%  {background-image: url("../image/car-1-pink.png");}
   50% {background-image: url("../image/car-2-pink.png");}
 }
 
-.car.purple{ animation: purpleCar 0.4s infinite;}
+.speed-1 .car.purple{ animation: purpleCar 0.4s infinite;}
 .speed-2 .car.purple{ animation: purpleCar 0.3s infinite;}
 .speed-3 .car.purple{ animation: purpleCar 0.2s infinite;}
 .speed-4 .car.purple{ animation: purpleCar 0.1s infinite;}
 .speed-5 .car.purple{ animation: purpleCar 0.05s infinite;}
+.car.purple{ animation: purpleCar 0.04s infinite;}
 @keyframes purpleCar{
   0%,100%  {background-image: url("../image/car-1-purple.png");}
   50% {background-image: url("../image/car-2-purple.png");}
 }
 
-.car.red{ animation: redCar 0.4s infinite;}
+.speed-1 .car.red{ animation: redCar 0.4s infinite;}
 .speed-2 .car.red{ animation: redCar 0.3s infinite;}
 .speed-3 .car.red{ animation: redCar 0.2s infinite;}
 .speed-4 .car.red{ animation: redCar 0.1s infinite;}
 .speed-5 .car.red{ animation: redCar 0.05s infinite;}
+.car.red{ animation: redCar 0.04s infinite;}
 @keyframes redCar{
   0%,100%  {background-image: url("../image/car-1-red.png");}
   50% {background-image: url("../image/car-2-red.png");}
 }
 
-.car.yellow{ animation: yellowCar 0.4s infinite;}
+.speed-1 .car.yellow{ animation: yellowCar 0.4s infinite;}
 .speed-2 .car.yellow{ animation: yellowCar 0.3s infinite;}
 .speed-3 .car.yellow{ animation: yellowCar 0.2s infinite;}
 .speed-4 .car.yellow{ animation: yellowCar 0.1s infinite;}
 .speed-5 .car.yellow{ animation: yellowCar 0.05s infinite;}
+.car.yellow{ animation: yellowCar 0.04s infinite;}
 @keyframes yellowCar{
   0%,100%  {background-image: url("../image/car-1-yellow.png");}
   50% {background-image: url("../image/car-2-yellow.png");}
 }
 
-.night .car:not(.player) {
-  background-image: url(../image/car-night.png) !important;
+.speed-1 .night .car:not(.player){ animation: nightCar 0.4s infinite;}
+.speed-2 .night .car:not(.player){ animation: nightCar 0.3s infinite;}
+.speed-3 .night .car:not(.player){ animation: nightCar 0.2s infinite;}
+.speed-4 .night .car:not(.player){ animation: nightCar 0.1s infinite;}
+.speed-5 .night .car:not(.player){ animation: nightCar 0.05s infinite;}
+.night .car:not(.player){ animation: nightCar 0.04s infinite;}
+@keyframes nightCar{
+  0%,100%  {background-image: url("../image/car-night-ghost-1.png");}
+  50% {background-image: url("../image/car-night-ghost-2.png");}
 }

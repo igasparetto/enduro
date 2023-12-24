@@ -1,10 +1,12 @@
 class EnemyCar {
   cars = [];
+  containerHeight = 0;
   constructor(container, carColors, carSizes, possibleCarPaths) {
     this.container = container;
     this.carColors = carColors;
     this.carSizes = carSizes;
     this.possibleCarPaths = possibleCarPaths;
+    this.containerHeight = parseInt(this.container.style.height);
   }
   createEnemyCar(position) {
     let track = possibleCarPaths[this.random(0, 2)];
@@ -31,15 +33,13 @@ class EnemyCar {
       }, i * 1900)
     }
   }
-  moveEnemyCar(carIndex, down, position, band) {
-    let track = this.cars[carIndex].getAttribute("track");
+  moveEnemyCar(carIndex, down, apex, band) {
     let index = parseInt(this.cars[carIndex].getAttribute("index"));
-    let point = document.getElementById(track + "-side-block-" + index);
-    if (!point) {
+    let refSideBlock = document.getElementById(this.cars[carIndex].getAttribute("track") + "-side-block-" + index);
+    if (!refSideBlock) {
       index = 0;
-      track = possibleCarPaths[this.random(0, 2)];
       this.cars[carIndex].setAttribute("index", index);
-      this.cars[carIndex].setAttribute("track", track);
+      this.cars[carIndex].setAttribute("track", possibleCarPaths[this.random(0, 2)]);
       this.cars[carIndex].style.width = "1px";
       this.cars[carIndex].style.height = (this.carSizes.height / this.carSizes.width) + "px";
       this.cars[carIndex].setAttribute(
@@ -48,9 +48,9 @@ class EnemyCar {
       );
       return;
     }
-    let y = parseFloat(point.style.top);
-    let size = 0.25 * this.carSizes.width * ((y - position.y) / band);
-    let x = parseFloat(point.style.left) - size / 2;
+    let y = parseFloat(refSideBlock.style.top);
+    let size = 0.25 * this.carSizes.width * ((y - apex.y) / band);
+    let x = parseFloat(refSideBlock.style.left) - size / 2;
     this.cars[carIndex].style.left = x + "px";
     this.cars[carIndex].style.width = size + "px";
     this.cars[carIndex].style.height = size * (this.carSizes.height / this.carSizes.width) + "px";

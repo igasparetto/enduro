@@ -4,9 +4,8 @@ class TrackLines {
   apex = { x: 0, y: 0 };
   correction = 25;
 
-  constructor(container, boundaryTileSize, game) {
+  constructor(container, game) {
     this.container = container;
-    this.boundaryTileSize = boundaryTileSize;
     this.game = game;
     this.innitTrackCorners();
     this.innitBezierPoints();
@@ -51,7 +50,7 @@ class TrackLines {
     // move A point
     this.apex.x += positionIncrement;
     let steps = Math.floor(
-      (this.trackCorners.right.y - this.apex.y) / this.boundaryTileSize
+      (this.trackCorners.right.y - this.apex.y)
     );
     let increment = 1 / steps;
 
@@ -79,10 +78,7 @@ class TrackLines {
   }
   createSideBlock(point, n, group, opacity) {
     let sideBlock = document.createElement("div");
-    const size =
-      this.boundaryTileSize +
-      (point.y - this.trackCorners.apex.y) / this.band -
-      2;
+    const size = (point.y - this.trackCorners.apex.y) / this.band;
     sideBlock.classList.add("side-block", "side-block-" + group);
     sideBlock.setAttribute("id", group + "-side-block-" + n);
     sideBlock.style.width = size + "px";
@@ -94,14 +90,14 @@ class TrackLines {
   }
   initBoundary(from, to, group) {
     // points a to b
-    let steps = (to.y - from.y) / this.boundaryTileSize;
+    let steps = (to.y - from.y);
     let deltaX = (to.x - from.x) / steps;
     let opacity = 20;
     let _boundariesPoints = [];
     for (let n = 0; n < steps - 1; n++) {
       let point = { x: 0, y: 0 };
       point.x = from.x + deltaX * n;
-      point.y = from.y + this.boundaryTileSize * n;
+      point.y = from.y + n;
       this.createSideBlock(point, n, group, opacity);
       _boundariesPoints.push(point);
       opacity++;

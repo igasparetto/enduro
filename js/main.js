@@ -14,7 +14,6 @@ let control;
 function init() {
   trackLines = new TrackLines(
     document.getElementById("gameWrapper"),
-    boundaryTileSize,
     game
   );
   trackLines.initBoundaries();
@@ -30,7 +29,6 @@ function init() {
 
   player = new Player(
     carMoveByPixels,
-    boundaryTileSize,
     game
   );
 
