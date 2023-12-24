@@ -13,9 +13,7 @@ class Game {
   enemyCar;
   player;
 
-  odd = false;
   gameTickSpeed = 100;
-  oddInterval;
 
   maxX;
   minX;
@@ -57,15 +55,6 @@ class Game {
     // make tracks move
     let _this = this;
     document.body.classList.remove("paused");
-    
-    this.oddInterval = setInterval(function(){
-      _this.odd = !_this.odd;
-      if (_this.odd) {
-        document.body.classList.add("odd");
-      } else {
-        document.body.classList.remove("odd");
-      }
-    }, this.gameTickSpeed * 2);
 
     this.gameTick = setInterval(function () {
       // move tracks
@@ -134,7 +123,6 @@ class Game {
   }
   pause() {
     this.gameIsPaused = true;
-    clearInterval(this.oddInterval);
     clearInterval(this.gameTick);
     document.body.classList.add("paused");
   }
