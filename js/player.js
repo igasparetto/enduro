@@ -1,20 +1,22 @@
 class Player {
-  constructor(container, playerPositions, carMoveByPixels, boundaryTileSize, game) {
-    this.container = container;
-    this.possibleTracks = possibleTracks;
+  constructor(carMoveByPixels, boundaryTileSize, game) {
+    this.possibleCarPaths = possibleCarPaths;
     this.carMoveByPixels = carMoveByPixels;
-    this.playerPositions = playerPositions;
     this.boundaryTileSize = boundaryTileSize;
     this.game = game;
+    this.playerPositions = {
+      x: this.game.gameSizes.width / 2 - this.game.carSizes.width / 2,
+      y: this.game.gameSizes.height - 2 * this.game.carSizes.height,
+    };
 
     this.player = document.createElement("div");
     this.player.classList.add("car", "player");
     this.player.style.width = this.game.carSizes.width + "px";
     this.player.style.height = this.game.carSizes.height + "px";
-    this.player.style.left = playerPositions.x + "px";
-    this.player.style.top = playerPositions.y + "px";
+    this.player.style.left = this.playerPositions.x + "px";
+    this.player.style.top = this.playerPositions.y + "px";
     this.player.setAttribute("image_index", 0);
-    container.append(this.player);
+    this.game.container.append(this.player);
   }
   action(foo, param) {
     if (this.game.gameIsPaused || !this.game.gameInPlay) {

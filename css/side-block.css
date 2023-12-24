@@ -1,0 +1,139 @@
+
+.side-block {
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 5px;
+  color: #999999;
+  user-select: none;
+  background-color: #b1b1b1;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+}
+
+.side-block-centerTrack {
+  display: none;
+}
+
+.divider-0 .side-block-centerTrack:nth-child(8n),
+.divider-0 .side-block-centerTrack:nth-child(8n + 1),
+.divider-0 .side-block-centerTrack:nth-child(8n + 2),
+.divider-1 .side-block-centerTrack:nth-child(8n + 1),
+.divider-1 .side-block-centerTrack:nth-child(8n + 2),
+.divider-1 .side-block-centerTrack:nth-child(8n + 3),
+.divider-2 .side-block-centerTrack:nth-child(8n + 2),
+.divider-2 .side-block-centerTrack:nth-child(8n + 3),
+.divider-2 .side-block-centerTrack:nth-child(8n + 4),
+.divider-3 .side-block-centerTrack:nth-child(8n + 3),
+.divider-3 .side-block-centerTrack:nth-child(8n + 4),
+.divider-3 .side-block-centerTrack:nth-child(8n + 5),
+.divider-4 .side-block-centerTrack:nth-child(8n + 4),
+.divider-4 .side-block-centerTrack:nth-child(8n + 5),
+.divider-4 .side-block-centerTrack:nth-child(8n + 6),
+.divider-5 .side-block-centerTrack:nth-child(8n + 5),
+.divider-5 .side-block-centerTrack:nth-child(8n + 6),
+.divider-5 .side-block-centerTrack:nth-child(8n + 7),
+.divider-6 .side-block-centerTrack:nth-child(8n + 6),
+.divider-6 .side-block-centerTrack:nth-child(8n + 7),
+.divider-6 .side-block-centerTrack:nth-child(8n + 8),
+.divider-7 .side-block-centerTrack:nth-child(8n + 7),
+.divider-7 .side-block-centerTrack:nth-child(8n + 8),
+.divider-7 .side-block-centerTrack:nth-child(8n + 9) {
+  display: block;
+}
+
+.divider-0 .side-block-left:nth-child(8n),
+.divider-1 .side-block-left:nth-child(8n + 1),
+.divider-2 .side-block-left:nth-child(8n + 2),
+.divider-3 .side-block-left:nth-child(8n + 3),
+.divider-4 .side-block-left:nth-child(8n + 4),
+.divider-5 .side-block-left:nth-child(8n + 5),
+.divider-6 .side-block-left:nth-child(8n + 6),
+.divider-7 .side-block-left:nth-child(8n + 7) {
+  background-color: rgb(203, 50, 50);
+}
+.divider-0 .side-block-left:nth-child(8n + 1),
+.divider-1 .side-block-left:nth-child(8n + 2),
+.divider-2 .side-block-left:nth-child(8n + 3),
+.divider-3 .side-block-left:nth-child(8n + 4),
+.divider-4 .side-block-left:nth-child(8n + 5),
+.divider-5 .side-block-left:nth-child(8n + 6),
+.divider-6 .side-block-left:nth-child(8n + 7),
+.divider-7 .side-block-left:nth-child(8n + 8),
+.divider-0 .side-block-left:nth-child(8n + 2),
+.divider-1 .side-block-left:nth-child(8n + 3),
+.divider-2 .side-block-left:nth-child(8n + 4),
+.divider-3 .side-block-left:nth-child(8n + 5),
+.divider-4 .side-block-left:nth-child(8n + 6),
+.divider-5 .side-block-left:nth-child(8n + 7),
+.divider-6 .side-block-left:nth-child(8n + 8),
+.divider-7 .side-block-left:nth-child(8n + 9),
+.divider-0 .side-block-left:nth-child(8n + 6),
+.divider-1 .side-block-left:nth-child(8n + 7),
+.divider-2 .side-block-left:nth-child(8n + 8),
+.divider-3 .side-block-left:nth-child(8n + 9),
+.divider-4 .side-block-left:nth-child(8n + 10),
+.divider-5 .side-block-left:nth-child(8n + 11),
+.divider-6 .side-block-left:nth-child(8n + 12),
+.divider-7 .side-block-left:nth-child(8n + 13),
+.divider-0 .side-block-left:nth-child(8n + 7),
+.divider-1 .side-block-left:nth-child(8n + 8),
+.divider-2 .side-block-left:nth-child(8n + 9),
+.divider-3 .side-block-left:nth-child(8n + 10),
+.divider-4 .side-block-left:nth-child(8n + 11),
+.divider-5 .side-block-left:nth-child(8n + 12),
+.divider-6 .side-block-left:nth-child(8n + 13),
+.divider-7 .side-block-left:nth-child(8n + 14) {
+  display: none;
+}
+
+.divider-0 .side-block-right:nth-child(8n),
+.divider-1 .side-block-right:nth-child(8n + 1),
+.divider-2 .side-block-right:nth-child(8n + 2),
+.divider-3 .side-block-right:nth-child(8n + 3),
+.divider-4 .side-block-right:nth-child(8n + 4),
+.divider-5 .side-block-right:nth-child(8n + 5),
+.divider-6 .side-block-right:nth-child(8n + 6),
+.divider-7 .side-block-right:nth-child(8n + 7) {
+  background-color: rgb(30, 255, 0);
+}
+
+.divider-0 .side-block-right:nth-child(8n + 1),
+.divider-1 .side-block-right:nth-child(8n + 2),
+.divider-2 .side-block-right:nth-child(8n + 3),
+.divider-3 .side-block-right:nth-child(8n + 4),
+.divider-4 .side-block-right:nth-child(8n + 5),
+.divider-5 .side-block-right:nth-child(8n + 6),
+.divider-6 .side-block-right:nth-child(8n + 7),
+.divider-7 .side-block-right:nth-child(8n + 8),
+.divider-0 .side-block-right:nth-child(8n + 2),
+.divider-1 .side-block-right:nth-child(8n + 3),
+.divider-2 .side-block-right:nth-child(8n + 4),
+.divider-3 .side-block-right:nth-child(8n + 5),
+.divider-4 .side-block-right:nth-child(8n + 6),
+.divider-5 .side-block-right:nth-child(8n + 7),
+.divider-6 .side-block-right:nth-child(8n + 8),
+.divider-7 .side-block-right:nth-child(8n + 9),
+.divider-0 .side-block-right:nth-child(8n + 6),
+.divider-1 .side-block-right:nth-child(8n + 7),
+.divider-2 .side-block-right:nth-child(8n + 8),
+.divider-3 .side-block-right:nth-child(8n + 9),
+.divider-4 .side-block-right:nth-child(8n + 10),
+.divider-5 .side-block-right:nth-child(8n + 11),
+.divider-6 .side-block-right:nth-child(8n + 12),
+.divider-7 .side-block-right:nth-child(8n + 13),
+.divider-0 .side-block-right:nth-child(8n + 7),
+.divider-1 .side-block-right:nth-child(8n + 8),
+.divider-2 .side-block-right:nth-child(8n + 9),
+.divider-3 .side-block-right:nth-child(8n + 10),
+.divider-4 .side-block-right:nth-child(8n + 11),
+.divider-5 .side-block-right:nth-child(8n + 12),
+.divider-6 .side-block-right:nth-child(8n + 13),
+.divider-7 .side-block-right:nth-child(8n + 14) {
+  display: none;
+}
+
+.side-block-rightTrack,
+.side-block-leftTrack {
+  display: none;
+}

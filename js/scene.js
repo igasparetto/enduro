@@ -21,7 +21,7 @@ let scenes = [
   "summer desert sunrise",
   "summer day desert",
 ];
-let sceneChangeInterval = 4000;
+let sceneChangeInterval = 10000;
 let $scene = document.getElementById("scene");
 let $currentScene = document.getElementById("currentScene");
 let currentScene = 0;

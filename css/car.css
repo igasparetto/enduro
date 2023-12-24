@@ -1,0 +1,62 @@
+.car {
+  position: absolute;
+  background-size: contain;
+  background-image: url(../image/car-1-grey.png);
+}
+.odd .car {
+  background-image: url(../image/car-2-grey.png);
+}
+
+.car.blue {
+  background-image: url(../image/car-1-blue.png);
+}
+.car.green {
+  background-image: url(../image/car-1-green.png);
+}
+.car.grey {
+  background-image: url(../image/car-1-grey.png);
+}
+.car.orange {
+  background-image: url(../image/car-1-orange.png);
+}
+.car.pink {
+  background-image: url(../image/car-1-pink.png);
+}
+.car.purple {
+  background-image: url(../image/car-1-purple.png);
+}
+.car.red {
+  background-image: url(../image/car-1-red.png);
+}
+.car.yellow {
+  background-image: url(../image/car-1-yellow.png);
+}
+
+.odd .car.blue {
+  background-image: url(../image/car-2-blue.png);
+}
+.odd .car.green {
+  background-image: url(../image/car-2-green.png);
+}
+.odd .car.grey {
+  background-image: url(../image/car-2-grey.png);
+}
+.odd .car.orange {
+  background-image: url(../image/car-2-orange.png);
+}
+.odd .car.pink {
+  background-image: url(../image/car-2-pink.png);
+}
+.odd .car.purple {
+  background-image: url(../image/car-2-purple.png);
+}
+.odd .car.red {
+  background-image: url(../image/car-2-red.png);
+}
+.odd .car.yellow {
+  background-image: url(../image/car-2-yellow.png);
+}
+
+.night .car:not(.player) {
+  background-image: url(../image/car-night.png) !important;
+}

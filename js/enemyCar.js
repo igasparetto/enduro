@@ -1,13 +1,13 @@
 class EnemyCar {
   cars = [];
-  constructor(container, carColors, carSizes, possibleTracks) {
+  constructor(container, carColors, carSizes, possibleCarPaths) {
     this.container = container;
     this.carColors = carColors;
     this.carSizes = carSizes;
-    this.possibleTracks = possibleTracks;
+    this.possibleCarPaths = possibleCarPaths;
   }
   createEnemyCar(position) {
-    let track = possibleTracks[this.random(0, 2)];
+    let track = possibleCarPaths[this.random(0, 2)];
     let enemy = document.createElement("div");
     enemy.classList.add(
       "car",
@@ -37,7 +37,7 @@ class EnemyCar {
     let point = document.getElementById(track + "-side-block-" + index);
     if (!point) {
       index = 0;
-      track = possibleTracks[this.random(0, 2)];
+      track = possibleCarPaths[this.random(0, 2)];
       this.cars[carIndex].setAttribute("index", index);
       this.cars[carIndex].setAttribute("track", track);
       this.cars[carIndex].style.width = "1px";

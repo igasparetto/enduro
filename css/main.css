@@ -9,7 +9,8 @@ body {
 body * {
   font-family: "Orbitron", sans-serif;
 }
-footer, p {
+footer,
+p {
   color: white;
   text-align: center;
 }
@@ -31,7 +32,11 @@ footer, p {
   position: relative;
   overflow: hidden;
 }
-#sky, #land {width: 100%; position: relative;}
+#sky,
+#land {
+  width: 100%;
+  position: relative;
+}
 
 /* day */
 #sky {
@@ -51,7 +56,8 @@ footer, p {
     background-position: 100% bottom;
   }
 }
-#sky::after, #sky::after {
+#sky::after,
+#sky::after {
   width: 200%;
   height: 100%;
   background-image: url(../image/mountains-day.png);
@@ -61,101 +67,13 @@ footer, p {
   bottom: 0;
   content: "";
 }
-.moving-right #sky::after, .moving-left #sky::after {
+body:not(.paused) .moving-right #sky::after,
+body:not(.paused) .moving-left #sky::after {
   animation: mountainsToRight 10s linear infinite reverse;
 }
-.moving-left #sky::after {
+body:not(.paused) .moving-left #sky::after {
   animation: mountainsToRight 10s linear infinite;
 }
-
-/*  */
-/* summer */
-.summer.sunrise #sky, .summer.sunset #sky {background-color: rgb(32, 22, 134);}
-.summer #sky {background-color: rgb(136, 190, 245);}
-.summer.sunrise #land, .summer.sunset #land {background-color: rgb(6, 49, 3);}
-.summer #land {background-color: rgb(10, 79, 4);}
-.summer.desert.sunrise #land, .summer.desert.sunset #land {background-color: rgb(98, 75, 16);}
-.summer.desert #land {background-color: #73551c;}
-.summer.desert.night #land {background-color: rgb(30, 24, 8);}
-
-/* autumn */
-.autumn.sunrise #sky, .autumn.sunset #sky {background-color: rgb(41, 34, 119);}
-.autumn #sky {background-color: rgb(136, 190, 245);}
-.autumn.sunrise #land, .autumn.sunset #land {background-color: rgb(6, 49, 3);}
-.autumn #land {background-color: rgb(52, 79, 4);}
-/* winter */
-.winter.sunrise #sky, .winter.sunset #sky {background-color: rgb(13, 9, 58);}
-.winter #sky {background-color: rgb(49, 35, 203);}
-.winter.sunrise #land, .winter.sunset #land {background-color: rgb(148, 149, 153);}
-.winter #land {background-color: rgb(227, 227, 227);}
-/* spring */
-.spring.sunrise #sky, .spring.sunset #sky {background-color: rgb(32, 22, 134);}
-.spring #sky {background-color: rgb(136, 190, 245);}
-.spring.sunrise #land, .spring.sunset #land {background-color: rgb(6, 49, 3);}
-.spring #land {background-color: rgb(52, 79, 4);}
-/* night */
-.night #sky {background-color: rgb(19, 19, 19);}
-.night #land {background-color: rgb(8, 8, 8);}
-.night.fog #land {background-color: rgb(61, 61, 61);}
-
-.summer.day #sky::after{background-image: url(../image/mountains-summer-day.png);}
-.summer.sunset #sky::after{background-image: url(../image/mountains-summer-sunset.png);}
-.summer.night #sky::after{background-image: url(../image/mountains-night.png);}
-.summer.sunrise #sky::after{background-image: url(../image/mountains-summer-sunrise.png);}
-.autumn.day #sky::after{background-image: url(../image/mountains-summer-day.png);}
-.autumn.day.white-mountains #sky::after{background-image: url(../image/mountains-winter-day.png);}
-.winter.day #sky::after{background-image: url(../image/mountains-winter-day.png);}
-.winter.sunset #sky::after{background-image: url(../image/mountains-winter-sunset.png);}
-.winter.night #sky::after{background-image: url(../image/mountains-night.png);}
-.winter.night.fog #sky::after{background-image: none;}
-.winter.sunrise #sky::after{background-image: url(../image/mountains-winter-sunrise.png);}
-.winter.day #sky::after{background-image: url(../image/mountains-winter-day.png);}
-.spring.day #sky::after{background-image: url(../image/mountains-summer-day.png);}
-.spring.sunset #sky::after{background-image: url(../image/mountains-summer-sunset.png);}
-.spring.night #sky::after{background-image: url(../image/mountains-night.png);}
-.spring.sunrise #sky::after{background-image: url(../image/mountains-summer-sunrise.png);}
-.summer.day.desert #sky::after{background-image: url(../image/mountains-desert.png);}
-.summer.desert.sunset #sky::after{background-image: url(../image/mountains-desert-sunset.png);}
-.summer.desert.night #sky::after{background-image: url(../image/mountains-night.png);}
-.summer.desert.sunrise #sky::after{background-image: url(../image/mountains-desert-sunrise.png);}
-.summer.day.desert #sky::after{background-image: url(../image/mountains-desert.png);}
-
-.fog #game::after{
-  display: block;
-  position: absolute;
-  top: 33%;
-  height: 30%;
-  width: 100%;
-  background: linear-gradient(180deg, rgb(19, 19, 19) 70%, rgba(108, 108, 108, 0.365) 90%, rgba(108, 108, 108, 0) 100%);
-  content: "";
-}
-
-.car {
-  position: absolute;
-  background-size: contain;
-  background-image: url(../image/car-1-grey.png);
-}
-.flip-image .car {background-image: url(../image/car-2-grey.png);}
-
-.car.blue {background-image: url(../image/car-1-blue.png);}
-.car.green {background-image: url(../image/car-1-green.png);}
-.car.grey {background-image: url(../image/car-1-grey.png);}
-.car.orange {background-image: url(../image/car-1-orange.png);}
-.car.pink {background-image: url(../image/car-1-pink.png);}
-.car.purple {background-image: url(../image/car-1-purple.png);}
-.car.red {background-image: url(../image/car-1-red.png);}
-.car.yellow {background-image: url(../image/car-1-yellow.png);}
-
-.flip-image .car.blue {background-image: url(../image/car-2-blue.png);}
-.flip-image .car.green {background-image: url(../image/car-2-green.png);}
-.flip-image .car.grey {background-image: url(../image/car-2-grey.png);}
-.flip-image .car.orange {background-image: url(../image/car-2-orange.png);}
-.flip-image .car.pink {background-image: url(../image/car-2-pink.png);}
-.flip-image .car.purple {background-image: url(../image/car-2-purple.png);}
-.flip-image .car.red {background-image: url(../image/car-2-red.png);}
-.flip-image .car.yellow {background-image: url(../image/car-2-yellow.png);}
-
-.night .car:not(.player){background-image: url(../image/car-night.png) !important;}
 
 #message {
   font-size: 16px;
@@ -176,152 +94,12 @@ footer, p {
   content: "";
 }
 
-.block,
-.btn,
-.side-block {
+.btn {
   box-sizing: border-box;
   background-color: #161616;
   text-align: center;
   font-size: 5px;
-  color: #999999;
   user-select: none;
-}
-
-.side-block {
-  background-color: #b1b1b1;
-  width: 5px;
-  height: 5px;
-  position: absolute
-}
-
-.side-block-centerTrack {display: none;}
-
-.divider-0 .side-block-centerTrack:nth-child(8n),
-.divider-0 .side-block-centerTrack:nth-child(8n+1),
-.divider-0 .side-block-centerTrack:nth-child(8n+2), 
-.divider-1 .side-block-centerTrack:nth-child(8n+1),
-.divider-1 .side-block-centerTrack:nth-child(8n+2),
-.divider-1 .side-block-centerTrack:nth-child(8n+3),
-.divider-2 .side-block-centerTrack:nth-child(8n+2),
-.divider-2 .side-block-centerTrack:nth-child(8n+3),
-.divider-2 .side-block-centerTrack:nth-child(8n+4),
-.divider-3 .side-block-centerTrack:nth-child(8n+3),
-.divider-3 .side-block-centerTrack:nth-child(8n+4),
-.divider-3 .side-block-centerTrack:nth-child(8n+5),
-.divider-4 .side-block-centerTrack:nth-child(8n+4),
-.divider-4 .side-block-centerTrack:nth-child(8n+5),
-.divider-4 .side-block-centerTrack:nth-child(8n+6),
-.divider-5 .side-block-centerTrack:nth-child(8n+5),
-.divider-5 .side-block-centerTrack:nth-child(8n+6),
-.divider-5 .side-block-centerTrack:nth-child(8n+7),
-.divider-6 .side-block-centerTrack:nth-child(8n+6),
-.divider-6 .side-block-centerTrack:nth-child(8n+7),
-.divider-6 .side-block-centerTrack:nth-child(8n+8),
-.divider-7 .side-block-centerTrack:nth-child(8n+7),
-.divider-7 .side-block-centerTrack:nth-child(8n+8),
-.divider-7 .side-block-centerTrack:nth-child(8n+9) {
-  display: block;
-}
-
-.divider-0 .side-block-left:nth-child(8n),
-.divider-1 .side-block-left:nth-child(8n+1),
-.divider-2 .side-block-left:nth-child(8n+2),
-.divider-3 .side-block-left:nth-child(8n+3),
-.divider-4 .side-block-left:nth-child(8n+4),
-.divider-5 .side-block-left:nth-child(8n+5),
-.divider-6 .side-block-left:nth-child(8n+6),
-.divider-7 .side-block-left:nth-child(8n+7) {
-  background-color: rgb(203, 50, 50);
-}
-.divider-0 .side-block-left:nth-child(8n+1),
-.divider-1 .side-block-left:nth-child(8n+2),
-.divider-2 .side-block-left:nth-child(8n+3),
-.divider-3 .side-block-left:nth-child(8n+4),
-.divider-4 .side-block-left:nth-child(8n+5),
-.divider-5 .side-block-left:nth-child(8n+6),
-.divider-6 .side-block-left:nth-child(8n+7),
-.divider-7 .side-block-left:nth-child(8n+8),
-.divider-0 .side-block-left:nth-child(8n+2),
-.divider-1 .side-block-left:nth-child(8n+3),
-.divider-2 .side-block-left:nth-child(8n+4),
-.divider-3 .side-block-left:nth-child(8n+5),
-.divider-4 .side-block-left:nth-child(8n+6),
-.divider-5 .side-block-left:nth-child(8n+7),
-.divider-6 .side-block-left:nth-child(8n+8),
-.divider-7 .side-block-left:nth-child(8n+9),
-.divider-0 .side-block-left:nth-child(8n+6),
-.divider-1 .side-block-left:nth-child(8n+7),
-.divider-2 .side-block-left:nth-child(8n+8),
-.divider-3 .side-block-left:nth-child(8n+9),
-.divider-4 .side-block-left:nth-child(8n+10),
-.divider-5 .side-block-left:nth-child(8n+11),
-.divider-6 .side-block-left:nth-child(8n+12),
-.divider-7 .side-block-left:nth-child(8n+13),
-.divider-0 .side-block-left:nth-child(8n+7),
-.divider-1 .side-block-left:nth-child(8n+8),
-.divider-2 .side-block-left:nth-child(8n+9),
-.divider-3 .side-block-left:nth-child(8n+10),
-.divider-4 .side-block-left:nth-child(8n+11),
-.divider-5 .side-block-left:nth-child(8n+12),
-.divider-6 .side-block-left:nth-child(8n+13),
-.divider-7 .side-block-left:nth-child(8n+14) {
-  display: none;
-}
-
-.divider-0 .side-block-right:nth-child(8n),
-.divider-1 .side-block-right:nth-child(8n+1),
-.divider-2 .side-block-right:nth-child(8n+2),
-.divider-3 .side-block-right:nth-child(8n+3),
-.divider-4 .side-block-right:nth-child(8n+4),
-.divider-5 .side-block-right:nth-child(8n+5),
-.divider-6 .side-block-right:nth-child(8n+6),
-.divider-7 .side-block-right:nth-child(8n+7) {
-  background-color: rgb(30, 255, 0);
-}
-
-.divider-0 .side-block-right:nth-child(8n+1),
-.divider-1 .side-block-right:nth-child(8n+2),
-.divider-2 .side-block-right:nth-child(8n+3),
-.divider-3 .side-block-right:nth-child(8n+4),
-.divider-4 .side-block-right:nth-child(8n+5),
-.divider-5 .side-block-right:nth-child(8n+6),
-.divider-6 .side-block-right:nth-child(8n+7),
-.divider-7 .side-block-right:nth-child(8n+8),
-.divider-0 .side-block-right:nth-child(8n+2),
-.divider-1 .side-block-right:nth-child(8n+3),
-.divider-2 .side-block-right:nth-child(8n+4),
-.divider-3 .side-block-right:nth-child(8n+5),
-.divider-4 .side-block-right:nth-child(8n+6),
-.divider-5 .side-block-right:nth-child(8n+7),
-.divider-6 .side-block-right:nth-child(8n+8),
-.divider-7 .side-block-right:nth-child(8n+9),
-.divider-0 .side-block-right:nth-child(8n+6),
-.divider-1 .side-block-right:nth-child(8n+7),
-.divider-2 .side-block-right:nth-child(8n+8),
-.divider-3 .side-block-right:nth-child(8n+9),
-.divider-4 .side-block-right:nth-child(8n+10),
-.divider-5 .side-block-right:nth-child(8n+11),
-.divider-6 .side-block-right:nth-child(8n+12),
-.divider-7 .side-block-right:nth-child(8n+13),
-.divider-0 .side-block-right:nth-child(8n+7),
-.divider-1 .side-block-right:nth-child(8n+8),
-.divider-2 .side-block-right:nth-child(8n+9),
-.divider-3 .side-block-right:nth-child(8n+10),
-.divider-4 .side-block-right:nth-child(8n+11),
-.divider-5 .side-block-right:nth-child(8n+12),
-.divider-6 .side-block-right:nth-child(8n+13),
-.divider-7 .side-block-right:nth-child(8n+14) {
-  display: none;
-}
-
-.side-block-rightTrack,
-.side-block-leftTrack {
-  display: none;
-}
-
-.bezier {background-color: chartreuse;}
-
-.btn {
   cursor: pointer;
   border-radius: 4px;
   color: #fff;
