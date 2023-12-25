@@ -12,18 +12,10 @@ class Game {
   trackLines;
   enemyCar;
   player;
+  crash = false;
 
-  currentSpeed = 1;
-  gameTickSpeeds = [
-    80,
-    70,
-    60,
-    50,
-    40,
-    30,
-    20,
-    10
-  ]
+  currentSpeed = 0;
+  gameTickSpeeds = [80, 70, 60, 50, 40, 30, 20, 10];
 
   maxX;
   minX;
@@ -35,8 +27,8 @@ class Game {
 
   enemyCarSpeed = 1;
   clockCounter = 0;
-  lineDivider = 24;
-  dividerCounter = 0;
+  lineDivider = 8;
+  dividerCounter = 80;
 
   constructor(container, carSizes) {
     this.container = container;
@@ -61,105 +53,166 @@ class Game {
 
     document.body.classList.add("paused");
     document.body.classList.add("speed-1");
+    this.triggerEvent(document.body, "gameInit");
+    setTimeout(this.speedUp.bind(this), 6000);
   }
-  speedUp() {
-    if(this.currentSpeed < this.gameTickSpeeds.length-1)
-      this.currentSpeed++;
+  speedChange() {
     clearInterval(this.gameTick);
     this.gameOnMove();
+  }
+  speedUp() {
+    if (this.currentSpeed < this.gameTickSpeeds.length - 1) this.currentSpeed++;
+    this.speedChange();
+    this.triggerEvent(document.body, "speedUp");
     return this.currentSpeed;
   }
   speedDown() {
-    if(this.currentSpeed > 0)
-      this.currentSpeed--;
-    clearInterval(this.gameTick);
-    this.gameOnMove();
+    if (this.currentSpeed > 0) this.currentSpeed--;
+    this.speedChange();
+    this.triggerEvent(document.body, "speedDown");
     return this.currentSpeed;
   }
+  gameTickAction() {
+    let X = this.trackLines.getApex().x;
+    if (X > this.maxX) {
+      this.direction = -5;
+    }
+    if (X < this.minX) {
+      this.direction = 5;
+    }
+
+    // game tick
+    this.clockCounter++;
+    // move tracks
+    this.dividerCounter++;
+    this.container.setAttribute(
+      "class",
+      "divider-" + (this.dividerCounter % this.lineDivider)
+    );
+    if (this.dividerCounter == 80) {
+      this.dividerCounter = 0;
+    }
+
+    this.roadCurving = !(
+      this.gameSizes.width / 2 - 10 < X && X < this.gameSizes.width / 2 + 10
+    );
+    this.curving();
+
+    for (let i = 0; i < this.enemyCar.cars.length; i++) {
+      let enemyPositions = this.enemyCar.moveEnemyCar(
+        i,
+        this.clockCounter % this.enemyCarSpeed == 0,
+        this.trackLines.getApex(),
+        this.trackLines.band,
+        this.trackLines.boundariesPoints,
+        this.crash ? -1 : 1 // direction
+      );
+      if (
+        this.player.isOverlap(enemyPositions, {
+          x: this.player.playerPositions.x,
+          y: this.player.playerPositions.y,
+          width: this.carSizes.width,
+          height: this.carSizes.height,
+        })
+      ) {
+        this.crash = true;
+        this.currentSpeed = 0;
+        this.speedChange();
+        this.triggerEvent(document.body, "carCrash");
+        setTimeout(this.resetCrash.bind(this), 3000);
+      }
+    }
+
+    this.countStop--;
+
+    if (this.countStop < 0) {
+      this.stop = !this.stop;
+      this.countStop = this.countStopReset;
+    }
+    if (!this.stop) {
+      X += this.direction;
+      this.trackLines.moveAPoint(this.direction);
+    }
+    if (this.clockCounter == 100) {
+      this.clockCounter = 0;
+    }
+  }
+  curving() {
+    if (!this.roadCurving) {
+      this.triggerEvent(document.body, "notCurving");
+    } else if (this.trackLines.apex.x < this.centerWidth) {
+      this.triggerEvent(document.body, "curvingRight");
+    } else {
+      this.triggerEvent(document.body, "curvingLeft");
+    }
+  }
+  resetCrash() {
+    this.crash = false;
+    this.triggerEvent(document.body, "resetCrash");
+  }
   gameOnMove() {
+    this.triggerEvent(document.body, "gameOn");
     // make tracks move
-    let _this = this;
-    document.body.classList.remove("paused");
-
-    document.body.classList.remove("speed-1");
-    document.body.classList.remove("speed-2");
-    document.body.classList.remove("speed-3");
-    document.body.classList.remove("speed-4");
-    document.body.classList.remove("speed-5");
-    document.body.classList.add("speed-" + (this.currentSpeed + 1));
-
-    this.gameTick = setInterval(function () {
-      // move tracks
-      _this.dividerCounter++;
-      _this.container.setAttribute(
-        "class",
-        "divider-" + (_this.dividerCounter % _this.lineDivider)
-      );
-      if (_this.dividerCounter == 100) {
-        _this.dividerCounter = 0;
-      }
-      
-      // game tick
-      _this.clockCounter++;
-
-      let X = _this.trackLines.getApex().x;
-      if (X > _this.maxX) {
-        _this.direction = -5;
-      }
-      if (X < _this.minX) {
-        _this.direction = 5;
-      }
-
-      _this.roadCurving = !(
-        _this.gameSizes.width / 2 - 10 < X && X < _this.gameSizes.width / 2 + 10
-      );
-
-      for (let i = 0; i < _this.enemyCar.cars.length; i++) {
-        _this.enemyCar.moveEnemyCar(
-          i,
-          _this.clockCounter % _this.enemyCarSpeed == 0,
-          _this.trackLines.getApex(),
-          _this.trackLines.band
-        );
-      }
-
-      _this.countStop--;
-
-      if (_this.countStop < 0) {
-        _this.stop = !_this.stop;
-        this.countStop = _this.countStopReset;
-      }
-      if (!_this.stop) {
-        X += _this.direction;
-        _this.trackLines.moveAPoint(_this.direction);
-      }
-      if (_this.clockCounter == 100) {
-        _this.clockCounter = 0;
-      }
-    }, this.gameTickSpeeds[this.currentSpeed]);
+    this.gameTick = setInterval(
+      this.gameTickAction.bind(this),
+      this.gameTickSpeeds[this.currentSpeed]
+    );
   }
   play() {
-    if(!this.gameInPlay) {
+    if (!this.gameInPlay) {
       this.gameInPlay = true;
       this.gameIsPaused = false;
       this.gameOnMove();
-    } else if(this.gameIsPaused) {
+    } else if (this.gameIsPaused) {
       this.unPause();
-    } else if(this.gameInPlay) {
+    } else if (this.gameInPlay) {
       this.pause();
     }
   }
   gameOver() {
     this.gameInPlay = false;
     this.gameIsPaused = false;
+    this.triggerEvent(document.body, "gameOver");
   }
   pause() {
     this.gameIsPaused = true;
     clearInterval(this.gameTick);
     document.body.classList.add("paused");
+    this.triggerEvent(document.body, "gamePaused");
   }
   unPause() {
     this.gameIsPaused = false;
     this.gameOnMove();
+    this.triggerEvent(document.body, "gameUnpaused");
+  }
+  triggerEvent(el, eventType) {
+    if (typeof eventType === "string" && typeof el[eventType] === "function") {
+      el[eventType]();
+    } else {
+      const event =
+        typeof eventType === "string"
+          ? new Event(eventType, { bubbles: true })
+          : eventType;
+      el.dispatchEvent(event);
+    }
+  }
+  addEventListener(el, eventName, eventHandler, selector) {
+    if (selector) {
+      const wrappedHandler = (e) => {
+        if (!e.target) return;
+        const el = e.target.closest(selector);
+        if (el) {
+          eventHandler.call(el, e);
+        }
+      };
+      el.addEventListener(eventName, wrappedHandler);
+      return wrappedHandler;
+    } else {
+      const wrappedHandler = (e) => {
+        eventHandler.call(el, e);
+      };
+      el.addEventListener(eventName, wrappedHandler);
+      return wrappedHandler;
+    }
   }
 }

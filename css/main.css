@@ -67,11 +67,11 @@ p {
   bottom: 0;
   content: "";
 }
-body:not(.paused) .moving-right #sky::after,
-body:not(.paused) .moving-left #sky::after {
+body:not(.paused) .curving-right #sky::after,
+body:not(.paused) .curving-left #sky::after {
   animation: mountainsToRight 10s linear infinite reverse;
 }
-body:not(.paused) .moving-left #sky::after {
+body:not(.paused) .curving-left #sky::after {
   animation: mountainsToRight 10s linear infinite;
 }
 
@@ -108,7 +108,8 @@ body:not(.paused) .moving-left #sky::after {
 }
 
 #start {
-  width: 100%;
+  max-width: auto;
+  width: auto;
   margin: 20px 0 0 0;
   background-color: #161616;
 }
@@ -154,7 +155,6 @@ h2 {
   min-width: 70px;
   height: 50px;
   font-size: 22px;
-  max-width: 100px;
 }
 
 input[type="checkbox"] {

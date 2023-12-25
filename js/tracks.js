@@ -2,6 +2,7 @@ class TrackLines {
   boundariesPoints = {};
   trackCorners = {};
   apex = { x: 0, y: 0 };
+  steps = 0;
   correction = 25;
 
   constructor(container, game) {
@@ -31,9 +32,9 @@ class TrackLines {
 
     return { x: x, y: y };
   }
-  recurveLine(start, end, steps, increment, key) {
+  recurveLine(start, end, increment, key) {
     let n = 0;
-    for (let i = 0; i < steps - 1; i++) {
+    for (let i = 0; i < this.steps - 1; i++) {
       let point = this.bezier(
         n,
         start,
@@ -42,64 +43,63 @@ class TrackLines {
         end
       );
       let el = document.getElementById(key + "-side-block-" + i);
-      el.style.left = point.x + "px";
+      if(el) {
+        el.style.left = point.x + "px";
+      }
       n += increment;
     }
   }
   moveAPoint(positionIncrement) {
     // move A point
     this.apex.x += positionIncrement;
-    let steps = Math.floor(
-      (this.trackCorners.right.y - this.apex.y)
-    );
-    let increment = 1 / steps;
 
-    if (!this.game.roadCurving) {
-      this.container.classList.remove("moving-left", "moving-right");
-    } else if (this.apex.x < this.game.centerWidth) {
-      this.container.classList.remove("moving-right");
-      this.container.classList.add("moving-left");
-    } else {
-      this.container.classList.remove("moving-left");
-      this.container.classList.add("moving-right");
-    }
+    let increment = 1 / this.steps;
 
     for (let key in this.trackCorners) {
       if (key !== "apex") {
-        this.recurveLine(
-          this.apex,
-          this.trackCorners[key],
-          steps,
-          increment,
-          key
-        );
+        this.recurveLine(this.apex, this.trackCorners[key], increment, key);
       }
     }
   }
   createSideBlock(point, n, group, opacity) {
     let sideBlock = document.createElement("div");
-    const size = (point.y - this.trackCorners.apex.y) / this.band;
-    sideBlock.classList.add("side-block", "side-block-" + group);
+    sideBlock.classList.add("band-" +  Math.floor(point.y / this.band), "side-block", "side-block-" + group);
     sideBlock.setAttribute("id", group + "-side-block-" + n);
-    sideBlock.style.width = size + "px";
-    sideBlock.style.height = size + "px";
+    sideBlock.style.width = point.width + "px";
+    sideBlock.style.height = point.height + "px";
     sideBlock.style.top = point.y + "px";
     sideBlock.style.opacity = opacity + "%";
     sideBlock.style.left = point.x + "px";
     this.game.container.append(sideBlock);
   }
+  isOverlap(previous, subject) {
+    return previous.y + previous.height > subject.y;
+  }
   initBoundary(from, to, group) {
     // points a to b
-    let steps = (to.y - from.y);
+    let steps = to.y - from.y;
     let deltaX = (to.x - from.x) / steps;
-    let opacity = 20;
+    let opacity = 1;
     let _boundariesPoints = [];
+    // only create points that don't overlap
+    let previousPoint = false;
     for (let n = 0; n < steps - 1; n++) {
       let point = { x: 0, y: 0 };
+      let size;
       point.x = from.x + deltaX * n;
       point.y = from.y + n;
-      this.createSideBlock(point, n, group, opacity);
+      size = (point.y - this.trackCorners.apex.y) / this.band;
+      if(size < 1)
+        size = 1;
+      point.width = size;
+      point.height = size;
+      point.print = previousPoint === false || !this.isOverlap(previousPoint, point);
+
       _boundariesPoints.push(point);
+      if(point.print){
+        this.createSideBlock(point, n, group, opacity);
+        previousPoint = point;
+      }
       opacity++;
     }
     return _boundariesPoints;
@@ -118,6 +118,7 @@ class TrackLines {
         );
       }
     }
+    this.steps = Math.floor(this.trackCorners.right.y - this.apex.y);
   }
   innitTrackCorners() {
     let fifthOfWidth = this.game.gameSizes.width / 5;
