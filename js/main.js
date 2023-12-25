@@ -10,7 +10,7 @@ let player;
 let control;
 
 var carAudio = new Audio('audio/car-running.mp3');
-carAudio.loop = true;
+carAudio.loop = false;
 
 function init() {
   trackLines = new TrackLines(document.getElementById("gameWrapper"), game);
@@ -51,10 +51,7 @@ function init() {
     carCrashAudio.play();
 
     $eventLog.innerHTML = "Car Crashed";
-  
-    setTimeout(function() {
-      carAudio.play();
-    }, 5900)
+
     setTimeout(function () {
       $eventLog.innerHTML = "&nbsp;";
     }, 2000);
@@ -69,17 +66,20 @@ function init() {
     startingAudio.loop = false;
     startingAudio.play();
     setTimeout(function() {
+      carAudio.loop = true;
       carAudio.play();
     }, 5900)
   });
   game.addEventListener(document.body, "gamePaused", function () {
     $start.innerHTML = "Unpause";
     $eventLog.innerHTML = "Game Paused";
+    carAudio.loop = false;
     carAudio.pause();
   });
   game.addEventListener(document.body, "gameUnpaused", function () {
     $start.innerHTML = "Pause";
     $eventLog.innerHTML = "Game On";
+    carAudio.loop = true;
     carAudio.play();
   });
 
