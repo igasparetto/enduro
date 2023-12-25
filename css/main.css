@@ -162,3 +162,20 @@ input[type="checkbox"] {
   top: 2px;
   margin-left: 0;
 }
+
+
+@media (max-width: 980px) {
+  #start,
+  #btnLeft,
+  #btnRight {
+    position: absolute;
+    bottom: 80px;
+  }
+  #btnLeft{left: 15px; height: 100px !important;}
+  #btnRight{right: 15px; height: 100px !important;}
+  #start{right: 15px; bottom: 15px; font-size: 10px !important}
+  p {float: left; width: 50%; text-align: center;}
+  footer {clear: both;}
+  footer p {float: none; width: 100%;}
+  h1 {margin-bottom: 5px;}
+}
