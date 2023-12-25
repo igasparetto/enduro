@@ -16,6 +16,9 @@ class Game {
 
   currentSpeed = 0;
   gameTickSpeeds = [80, 70, 60, 50, 40, 30, 20, 10];
+  gameTick;
+  gameFasterTick;
+  fasterEveryMilliseconds = 6000;
 
   maxX;
   minX;
@@ -54,10 +57,10 @@ class Game {
     document.body.classList.add("paused");
     document.body.classList.add("speed-1");
     this.triggerEvent(document.body, "gameInit");
-    setTimeout(this.speedUp.bind(this), 6000);
   }
   speedChange() {
     clearInterval(this.gameTick);
+    clearInterval(this.gameFasterTick);
     this.gameOnMove();
   }
   speedUp() {
@@ -157,11 +160,13 @@ class Game {
       this.gameTickAction.bind(this),
       this.gameTickSpeeds[this.currentSpeed]
     );
+    this.gameFasterTick = setInterval(this.speedUp.bind(this), this.fasterEveryMilliseconds);
   }
   play() {
     if (!this.gameInPlay) {
       this.gameInPlay = true;
       this.gameIsPaused = false;
+      this.triggerEvent(document.body, "engineStart");
       this.gameOnMove();
     } else if (this.gameIsPaused) {
       this.unPause();
@@ -176,6 +181,7 @@ class Game {
   }
   pause() {
     clearInterval(this.gameTick);
+    clearInterval(this.gameFasterTick);
     this.gameIsPaused = true;
     document.body.classList.add("paused");
     this.triggerEvent(document.body, "gamePaused");

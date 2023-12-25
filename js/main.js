@@ -9,6 +9,9 @@ let enemyCar;
 let player;
 let control;
 
+var carAudio = new Audio('audio/car-running.mp3');
+carAudio.loop = true;
+
 function init() {
   trackLines = new TrackLines(document.getElementById("gameWrapper"), game);
   trackLines.initBoundaries();
@@ -43,7 +46,15 @@ function init() {
   control.setKeyboardEventAction("ArrowLeft", "keydown", moveLeft);
 
   game.addEventListener(document.body, "carCrash", function () {
+    var carCrashAudio = new Audio('audio/car-crash.mp3');
+    carCrashAudio.loop = false;
+    carCrashAudio.play();
+
     $eventLog.innerHTML = "Car Crashed";
+  
+    setTimeout(function() {
+      carAudio.play();
+    }, 5900)
     setTimeout(function () {
       $eventLog.innerHTML = "&nbsp;";
     }, 2000);
@@ -52,13 +63,24 @@ function init() {
     $start.innerHTML = "Pause";
     $eventLog.innerHTML = "Game On";
   });
+  
+  game.addEventListener(document.body, "engineStart", function () {
+    var startingAudio = new Audio('audio/car-starting.mp3');
+    startingAudio.loop = false;
+    startingAudio.play();
+    setTimeout(function() {
+      carAudio.play();
+    }, 5900)
+  });
   game.addEventListener(document.body, "gamePaused", function () {
     $start.innerHTML = "Unpause";
     $eventLog.innerHTML = "Game Paused";
+    carAudio.pause();
   });
   game.addEventListener(document.body, "gameUnpaused", function () {
     $start.innerHTML = "Pause";
     $eventLog.innerHTML = "Game On";
+    carAudio.play();
   });
 
   game.addEventListener(document.body, "notCurving", function () {
