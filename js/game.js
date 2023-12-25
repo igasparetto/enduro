@@ -96,7 +96,7 @@ class Game {
     this.roadCurving = !(
       this.gameSizes.width / 2 - 10 < X && X < this.gameSizes.width / 2 + 10
     );
-    this.curving();
+    this.dispatchCurving();
 
     for (let i = 0; i < this.enemyCar.cars.length; i++) {
       let enemyPositions = this.enemyCar.moveEnemyCar(
@@ -137,7 +137,7 @@ class Game {
       this.clockCounter = 0;
     }
   }
-  curving() {
+  dispatchCurving() {
     if (!this.roadCurving) {
       this.triggerEvent(document.body, "notCurving");
     } else if (this.trackLines.apex.x < this.centerWidth) {
@@ -175,8 +175,8 @@ class Game {
     this.triggerEvent(document.body, "gameOver");
   }
   pause() {
-    this.gameIsPaused = true;
     clearInterval(this.gameTick);
+    this.gameIsPaused = true;
     document.body.classList.add("paused");
     this.triggerEvent(document.body, "gamePaused");
   }

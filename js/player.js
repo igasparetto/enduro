@@ -32,10 +32,10 @@ class Player {
     );
   }
   actionRight(boundariesPoints) {
-    this.moveRL(this.carMoveByPixels, boundariesPoints);
+    return this.moveRL(this.carMoveByPixels, boundariesPoints);
   }
   actionLeft(boundariesPoints) {
-    this.moveRL(-this.carMoveByPixels, boundariesPoints);
+    return this.moveRL(-this.carMoveByPixels, boundariesPoints);
   }
   isSideCrash(data) {
     for (let i = 0; i < data.length; i++) {
