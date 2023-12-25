@@ -30,7 +30,7 @@ class EnemyCar {
     for(var i = 0; i < n; i++) {
       setTimeout(function() {
         _this.cars.push(_this.createEnemyCar(position))
-      }, i * 1900)
+      }, i * 2500)
     }
   }
   getNextIndex(index, points, direction) {
@@ -54,7 +54,7 @@ class EnemyCar {
     let carPoints = points[this.cars[carIndex].getAttribute("track")];
     let nextPositionIndex = this.getNextIndex(index, carPoints, direction);
     let refSideBlock = document.getElementById(this.cars[carIndex].getAttribute("track") + "-side-block-" + nextPositionIndex);
-    let size, w, y, x;
+    let size, y, x;
     let h = (this.carSizes.height / this.carSizes.width);
     if (!refSideBlock) {
       this.cars[carIndex].setAttribute("index", 0);

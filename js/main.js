@@ -1,6 +1,8 @@
 let $gameContainer = document.getElementById("game");
 let $eventLog = document.getElementById("eventLog");
 let $start = document.getElementById("start");
+let $points = document.getElementById("points");
+let $currentSpeed = document.getElementById("currentSpeed");
 
 // expose to global scope (for now)
 let game = new Game($gameContainer, carSizes);
@@ -10,7 +12,7 @@ let player;
 let control;
 
 var carAudio = new Audio('audio/car-running.mp3');
-carAudio.loop = false;
+carAudio.loop = true;
 
 function init() {
   trackLines = new TrackLines(document.getElementById("gameWrapper"), game);
@@ -25,7 +27,7 @@ function init() {
   );
   enemyCar.createEnemyCars(5, trackLines.getApex());
 
-  player = new Player(carMoveByPixels, game);
+  player = new Player(10, game);
 
   game.init(trackLines, enemyCar, player);
 
@@ -37,6 +39,8 @@ function init() {
     player.actionLeft(trackLines.getBoundariesPoints());
   };
 
+  document.body.classList.add("paused");
+  
   control.setButtonEventAction("start", "click", game.play.bind(game));
   control.setButtonEventAction("btnRight", "click", moveRight);
   control.setButtonEventAction("btnLeft", "click", moveLeft);
@@ -44,7 +48,7 @@ function init() {
   control.setKeyboardEventAction("Space", "keydown", game.play.bind(game));
   control.setKeyboardEventAction("ArrowRight", "keydown", moveRight);
   control.setKeyboardEventAction("ArrowLeft", "keydown", moveLeft);
-
+  
   game.addEventListener(document.body, "carCrash", function () {
     var carCrashAudio = new Audio('audio/car-crash.mp3');
     carCrashAudio.loop = false;
@@ -57,7 +61,6 @@ function init() {
     }, 2000);
   });
   game.addEventListener(document.body, "gameOn", function () {
-    $start.innerHTML = "Pause";
     $eventLog.innerHTML = "Game On";
   });
   
@@ -66,20 +69,17 @@ function init() {
     startingAudio.loop = false;
     startingAudio.play();
     setTimeout(function() {
-      carAudio.loop = true;
       carAudio.play();
     }, 5900)
   });
   game.addEventListener(document.body, "gamePaused", function () {
-    $start.innerHTML = "Unpause";
+    document.body.classList.remove("add");
     $eventLog.innerHTML = "Game Paused";
-    carAudio.loop = false;
     carAudio.pause();
   });
   game.addEventListener(document.body, "gameUnpaused", function () {
-    $start.innerHTML = "Pause";
+    document.body.classList.remove("paused");
     $eventLog.innerHTML = "Game On";
-    carAudio.loop = true;
     carAudio.play();
   });
 
@@ -94,7 +94,16 @@ function init() {
     $gameContainer.classList.remove("curving-left");
     $gameContainer.classList.add("curving-right");
   });
-
+  game.addEventListener(document.body, "addOne", function () {
+    $points.innerHTML = game.gamePoints;
+  });
+  game.addEventListener(document.body, "addOne", function () {
+    $points.innerHTML = game.gamePoints;
+  });
+  game.addEventListener(document.body, "speedChange", function () {
+    $currentSpeed.innerHTML = game.currentSpeed + 1;
+  });
+  
   game.addEventListener(document.body, "gameOn", function () {
     document.body.classList.remove("paused");
     document.body.classList.remove("speed-1");

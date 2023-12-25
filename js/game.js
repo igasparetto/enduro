@@ -1,6 +1,8 @@
 class Game {
   container;
 
+  gamePoints = 0;
+
   gameIsPaused = false;
   gameInPlay = false;
   roadCurving = false;
@@ -23,7 +25,7 @@ class Game {
   maxX;
   minX;
 
-  direction = 1;
+  sideDirection = 1;
   stop = false;
   countStopReset = 100;
   countStop;
@@ -62,6 +64,7 @@ class Game {
     clearInterval(this.gameTick);
     clearInterval(this.gameFasterTick);
     this.gameOnMove();
+    this.triggerEvent(document.body, "speedChange");
   }
   speedUp() {
     if (this.currentSpeed < this.gameTickSpeeds.length - 1) this.currentSpeed++;
@@ -78,10 +81,10 @@ class Game {
   gameTickAction() {
     let X = this.trackLines.getApex().x;
     if (X > this.maxX) {
-      this.direction = -5;
+      this.sideDirection = -5;
     }
     if (X < this.minX) {
-      this.direction = 5;
+      this.sideDirection = 5;
     }
 
     // game tick
@@ -110,6 +113,13 @@ class Game {
         this.trackLines.boundariesPoints,
         this.crash ? -1 : 1 // direction
       );
+
+      // returned to top
+      if(!this.crash && enemyPositions.y === this.trackLines.apex.y) {
+        this.gamePoints++;
+        this.triggerEvent(document.body, "addOne");
+      }
+
       if (
         this.player.isOverlap(enemyPositions, {
           x: this.player.playerPositions.x,
@@ -133,8 +143,8 @@ class Game {
       this.countStop = this.countStopReset;
     }
     if (!this.stop) {
-      X += this.direction;
-      this.trackLines.moveAPoint(this.direction);
+      X += this.sideDirection;
+      this.trackLines.moveAPoint(this.sideDirection);
     }
     if (this.clockCounter == 100) {
       this.clockCounter = 0;
@@ -163,6 +173,7 @@ class Game {
     this.gameFasterTick = setInterval(this.speedUp.bind(this), this.fasterEveryMilliseconds);
   }
   play() {
+    this.triggerEvent(document.body, "speedChange");
     if (!this.gameInPlay) {
       this.gameInPlay = true;
       this.gameIsPaused = false;
