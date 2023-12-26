@@ -1,3 +1,39 @@
+/* day */
+#sky {
+  background-color: rgb(136, 190, 245);
+  height: 33.33%;
+}
+#land {
+  background-color: rgb(10, 79, 4);
+  height: 66.66%;
+}
+
+@keyframes mountainsToRight {
+  from {
+    background-position: 0 bottom;
+  }
+  to {
+    background-position: 100% bottom;
+  }
+}
+#sky::after,
+#sky::after {
+  width: 200%;
+  height: 100%;
+  background-image: url(../image/mountains-day.png);
+  background-position: 0px bottom;
+  background-repeat: repeat-x;
+  position: absolute;
+  bottom: 0;
+  content: "";
+}
+body:not(.paused) .curving-right #sky::after,
+body:not(.paused) .curving-left #sky::after {
+  animation: mountainsToRight 10s linear infinite reverse;
+}
+body:not(.paused) .curving-left #sky::after {
+  animation: mountainsToRight 10s linear infinite;
+}
 
 /* summer */
 .summer.sunrise #sky,
