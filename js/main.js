@@ -31,10 +31,18 @@ function init() {
   game.init(trackLines, enemyCar, player);
 
   control = new Control();
-  let moveRight = function () {
+  let moveRight = function (event) {
+    if(event){
+      event.preventDefault();
+      event.stopPropagation();
+    }
     player.actionRight(trackLines.getBoundariesPoints());
   };
-  let moveLeft = function () {
+  let moveLeft = function (event) {
+    if(event){
+      event.preventDefault();
+      event.stopPropagation();
+    }
     player.actionLeft(trackLines.getBoundariesPoints());
   };
 
