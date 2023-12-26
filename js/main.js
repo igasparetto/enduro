@@ -25,14 +25,6 @@ function init() {
     carSizes,
     possibleCarPaths
   );
-  // create the 3 cars
-  enemyCar.cars.push(enemyCar.createEnemyCar(trackLines.getApex()));
-  setTimeout(function() {
-    enemyCar.cars.push(enemyCar.createEnemyCar(trackLines.getApex()))
-  }, 3500)
-  setTimeout(function() {
-    enemyCar.cars.push(enemyCar.createEnemyCar(trackLines.getApex()))
-  }, 6000)
 
   player = new Player(10, game);
 
@@ -52,7 +44,7 @@ function init() {
   control.setButtonEventAction("btnRight", "click", moveRight);
   control.setButtonEventAction("btnLeft", "click", moveLeft);
 
- control.setKeyboardEventAction("ArrowRight", "keydown", moveRight);
+  control.setKeyboardEventAction("ArrowRight", "keydown", moveRight);
   control.setKeyboardEventAction("ArrowLeft", "keydown", moveLeft);
   
   game.addEventListener(document.body, "carCrash", function () {
@@ -76,7 +68,16 @@ function init() {
     startingAudio.play();
     setTimeout(function() {
       carAudio.play();
-    }, 5900)
+    }, 5900);
+
+    // create the 3 cars
+    enemyCar.cars.push(enemyCar.createEnemyCar(trackLines.getApex()));
+    setTimeout(function() {
+      enemyCar.cars.push(enemyCar.createEnemyCar(trackLines.getApex()))
+    }, 3500)
+    setTimeout(function() {
+      enemyCar.cars.push(enemyCar.createEnemyCar(trackLines.getApex()))
+    }, 6000)
   });
   game.addEventListener(document.body, "gamePaused", function () {
     document.body.classList.remove("add");
