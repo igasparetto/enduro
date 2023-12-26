@@ -23,12 +23,17 @@ let scenes = [
 ];
 let sceneChangeInterval = 10000;
 let $scene = document.getElementById("scene");
+let $phase = document.getElementById("phase");
 let $currentScene = document.getElementById("currentScene");
 let currentScene = 0;
+let years = 1;
 let changeScenes = setInterval(function () {
   currentScene++;
   if (currentScene == scenes.length) {
     currentScene = 0;
+    years++;
+    $phase.innerHTML = years;
+    console.log(years);
   }
   $scene.setAttribute("class", scenes[currentScene]);
   $currentScene.innerHTML = scenes[currentScene];

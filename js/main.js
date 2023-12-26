@@ -110,10 +110,7 @@ function init() {
     $gameContainer.classList.add("curving-right");
   });
   game.addEventListener(document.body, "addOne", function () {
-    $points.innerHTML = game.gamePoints;
-  });
-  game.addEventListener(document.body, "addOne", function () {
-    $points.innerHTML = game.gamePoints;
+    $points.innerHTML = (game.gamePoints < 10 ? "00" : game.gamePoints < 100 ? "0" : "") + game.gamePoints;
   });
   game.addEventListener(document.body, "speedChange", function () {
     $currentSpeed.innerHTML = game.currentSpeed + 1;
