@@ -85,6 +85,16 @@ h1 span {
   text-align: center;
   position: relative;
 }
+.icon {
+  position: relative;
+  display: inline-block;
+}
+#btnLeft .icon::after{
+  content: "\21E6";
+}
+#btnRight .icon::after{
+  content: "\21E8";
+}
 
 #start {
   width: 70px;
@@ -93,8 +103,6 @@ h1 span {
   font-size: 50px;
 }
 #start .icon {
-  position: relative;
-  display: inline-block;
   min-width: 22px;
   min-height: 22px;
 }
