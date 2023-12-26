@@ -145,7 +145,7 @@ h2 {
   position: relative;
 }
 
-#controls .btn {
+.btn {
   min-width: 70px;
   height: 50px;
   font-size: 22px;
@@ -156,7 +156,12 @@ input[type="checkbox"] {
   top: 2px;
   margin-left: 0;
 }
-
+#start {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 50px;
+}
 #start .icon {
   position: relative;
   display: inline-block;
@@ -165,13 +170,13 @@ input[type="checkbox"] {
 }
 #start .icon::after {
   position: absolute;
-  top: 0;
-  left: 3px;
-  content: "\23F8";
+  top: -38px;
+  left: -8px;
+  content: "\23FC";
+  color: rgb(133, 239, 84);
 }
 .paused #start .icon::after {
-  left: 0;
-  content: "\25BA";
+  color: rgb(239, 84, 115);
 }
 
 @media (max-width: 980px) {
@@ -179,7 +184,7 @@ input[type="checkbox"] {
   #btnLeft,
   #btnRight {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
   }
   #btnLeft{left: 15px; height: 100px !important;}
   #btnRight{right: 15px; height: 100px !important;}

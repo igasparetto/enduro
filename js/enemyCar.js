@@ -25,14 +25,6 @@ class EnemyCar {
     this.container.append(enemy);
     return enemy;
   }
-  createEnemyCars (n = 5, position) {
-    let _this = this;
-    for(var i = 0; i < n; i++) {
-      setTimeout(function() {
-        _this.cars.push(_this.createEnemyCar(position))
-      }, i * 2500)
-    }
-  }
   getNextIndex(index, points, direction) {
     if(direction > 0) {
       for(var i = index + 1; i < points.length; i++) {
@@ -42,7 +34,7 @@ class EnemyCar {
       }
     } else {
       for(var i = index - 1; i > 0; i--) {
-        if(points[i].print) {
+                if(points[i].print) {
           return i;
         }
       }
