@@ -57,6 +57,7 @@ h1 {
   text-align: center;
   color: #ef5473;
   font-size: 28px;
+  margin: 0;
 }
 h1 span {
   display: inline-block;
