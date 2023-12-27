@@ -15,6 +15,8 @@ var carAudio1 = new Audio("audio/car-running.mp3");
 carAudio1.loop = true;
 var carAudio2 = new Audio("audio/car-running.mp3");
 carAudio2.loop = true;
+var carCrashAudio = new Audio("audio/car-crash.mp3");
+carCrashAudio.loop = false;
 
 function init() {
   trackLines = new TrackLines(document.getElementById("gameWrapper"), game);
@@ -89,8 +91,6 @@ function init() {
   control.setKeyboardEventAction("ArrowLeft", "keyup", stopMoveLeft);
 
   game.addEventListener(document.body, "carCrash", function () {
-    var carCrashAudio = new Audio("audio/car-crash.mp3");
-    carCrashAudio.loop = false;
     carCrashAudio.play();
 
     $eventLog.innerHTML = "Car Crashed";

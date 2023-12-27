@@ -79,7 +79,7 @@ class Player {
         return false;
       }
     }
-    this.playerPositions.x = this.playerPositions.x + direction;
+    this.playerPositions.x = this.playerPositions.x + direction + (direction > 0 ? this.game.currentSpeed : -this.game.currentSpeed);
     this.player.style.left = this.playerPositions.x + "px";
     return true;
   }
