@@ -11,8 +11,10 @@ let enemyCar;
 let player;
 let control;
 
-var carAudio = new Audio('audio/car-running.mp3');
-carAudio.loop = true;
+var carAudio1 = new Audio('audio/car-running.mp3');
+carAudio1.loop = true;
+var carAudio2 = new Audio('audio/car-running.mp3');
+carAudio2.loop = true;
 
 function init() {
   trackLines = new TrackLines(document.getElementById("gameWrapper"), game);
@@ -102,12 +104,22 @@ function init() {
     $eventLog.innerHTML = "Game On";
   });
   
+  function playSecondCarAudio() {
+    // prevents discontinuous audio
+    setTimeout(function() {
+      carAudio2.play();
+    }, 1000);
+  }
+
   game.addEventListener(document.body, "engineStart", function () {
+    currentScene = 0; // from scene.js
+    years = 1; // from scene.js
     var startingAudio = new Audio('audio/car-starting.mp3');
     startingAudio.loop = false;
     startingAudio.play();
     setTimeout(function() {
-      carAudio.play();
+      carAudio1.play();
+      playSecondCarAudio();
     }, 5900);
 
     // create the 3 cars
@@ -122,12 +134,14 @@ function init() {
   game.addEventListener(document.body, "gamePaused", function () {
     document.body.classList.remove("add");
     $eventLog.innerHTML = "Game Paused";
-    carAudio.pause();
+    carAudio1.pause();
+    carAudio2.pause();
   });
   game.addEventListener(document.body, "gameUnpaused", function () {
     document.body.classList.remove("paused");
     $eventLog.innerHTML = "Game On";
-    carAudio.play();
+    carAudio1.play();
+    playSecondCarAudio()
   });
 
   game.addEventListener(document.body, "notCurving", function () {
