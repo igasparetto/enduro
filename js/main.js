@@ -77,6 +77,11 @@ function init() {
   control.setButtonEventAction("btnLeft", "mousedown", startMoveLeft);
   control.setButtonEventAction("btnLeft", "mouseup", stopMoveLeft);
 
+  control.setButtonEventAction("btnRight", "touchstart", startMoveRight);
+  control.setButtonEventAction("btnRight", "touchend", stopMoveRight);
+  control.setButtonEventAction("btnLeft", "touchstart", startMoveLeft);
+  control.setButtonEventAction("btnLeft", "touchend", stopMoveLeft);
+
   control.setKeyboardEventAction("ArrowRight", "keydown", startMoveRight);
   control.setKeyboardEventAction("ArrowRight", "keyup", stopMoveRight);
   control.setKeyboardEventAction("ArrowLeft", "keydown", startMoveLeft);
