@@ -33,7 +33,6 @@ let changeScenes = setInterval(function () {
     currentScene = 0;
     years++;
     $phase.innerHTML = years;
-    console.log(years);
   }
   $scene.setAttribute("class", scenes[currentScene]);
   $currentScene.innerHTML = scenes[currentScene];

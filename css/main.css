@@ -51,14 +51,14 @@ p {
   user-select: none;
   cursor: pointer;
   border-radius: 20px;
+  border-width: 1px;
   color: #fff;
   padding: 10px;
   margin: 5px;
 }
-
 h1 {
   text-align: center;
-  color: #dcdcdc7d;
+  color: #ffffff;
   font-size: 22px;
   margin: 0;
   height: 30px;
@@ -67,7 +67,7 @@ h1 span {
   display: inline-block;
   padding: 7px 34px 13px;
   background: linear-gradient(#454545, #313337 40%, #191919 3%, #212121);
-  border: 2px outset #a5a5a5;
+  border: px outset #a5a5a5;
   border-radius: 14px 14px 50px 50px;
   position: relative;
   bottom: -15px;
@@ -95,12 +95,12 @@ h1 span {
   font-family: Arial, Helvetica, sans-serif !important;
 }
 #btnLeft .icon::after{
-  content: "\21E6";
-  font-size: 33px;
+  content: "\276C";
+  font-size: 65px;
 }
 #btnRight .icon::after{
-  content: "\21E8";
-  font-size: 33px;
+  content: "\276D";
+  font-size: 65px;
 }
 
 #start {
@@ -169,14 +169,15 @@ h1 span {
   #btnLeft,
   #btnRight {
     position: absolute;
-    bottom: 100px;
+    bottom: 170px;
+    height: 100px;
   }
-  #btnLeft{left: 15px; height: 100px;}
-  #btnRight{right: 15px; height: 100px;}
-  #start{right: 15px; bottom: 15px;}
+  #btnLeft{left: 15px;}
+  #btnRight{right: 15px;}
+  #start{height: 70px; right: 15px; bottom: 70px;}
   p {float: left; width: 33%; text-align: center;}
   footer {clear: both;}
   footer p {float: none; width: 100%;}
-  h1 {height: 15px;}
+  h1 {height: 0;}
   h1 span {bottom: 5px;}
 }

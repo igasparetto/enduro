@@ -5,7 +5,7 @@ class Control {
   }
   setKeyboardEventAction(key, event, action) {
     window.addEventListener(event, function (e) {
-      if (e.code == key) action();
+      if (e.code == key) action(e);
     });
   }
 }

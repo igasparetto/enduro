@@ -31,29 +31,56 @@ function init() {
   game.init(trackLines, enemyCar, player);
 
   control = new Control();
-  let moveRight = function (event) {
-    if(event){
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  let moveRight = function () {
     player.actionRight(trackLines.getBoundariesPoints());
   };
-  let moveLeft = function (event) {
+  let moveLeft = function () {
+    player.actionLeft(trackLines.getBoundariesPoints());
+  };
+
+  let moveTick = 100;
+  let moveRightInterval = false;
+  let startMoveRight = function(event) {
     if(event){
       event.preventDefault();
       event.stopPropagation();
     }
-    player.actionLeft(trackLines.getBoundariesPoints());
-  };
+    clearInterval(moveLeftInterval);
+    if(!moveRightInterval)
+      moveRightInterval = setInterval(moveRight, moveTick);
+  }
+  let stopMoveRight = function(e) {
+    clearInterval(moveRightInterval);
+    moveRightInterval = false;
+  }
+
+  let moveLeftInterval = false;
+  let startMoveLeft = function(event) {
+    if(event){
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    clearInterval(moveRightInterval);
+    if(!moveLeftInterval)
+      moveLeftInterval = setInterval(moveLeft, moveTick);
+  }
+  let stopMoveLeft = function() {
+    clearInterval(moveLeftInterval);
+    moveLeftInterval = false;
+  }
 
   document.body.classList.add("paused");
   
   control.setButtonEventAction("start", "click", game.play.bind(game));
-  control.setButtonEventAction("btnRight", "click", moveRight);
-  control.setButtonEventAction("btnLeft", "click", moveLeft);
+  control.setButtonEventAction("btnRight", "mousedown", startMoveRight);
+  control.setButtonEventAction("btnRight", "mouseup", stopMoveRight);
+  control.setButtonEventAction("btnLeft", "mousedown", startMoveLeft);
+  control.setButtonEventAction("btnLeft", "mouseup", stopMoveLeft);
 
-  control.setKeyboardEventAction("ArrowRight", "keydown", moveRight);
-  control.setKeyboardEventAction("ArrowLeft", "keydown", moveLeft);
+  control.setKeyboardEventAction("ArrowRight", "keydown", startMoveRight);
+  control.setKeyboardEventAction("ArrowRight", "keyup", stopMoveRight);
+  control.setKeyboardEventAction("ArrowLeft", "keydown", startMoveLeft);
+  control.setKeyboardEventAction("ArrowLeft", "keyup", stopMoveLeft);
   
   game.addEventListener(document.body, "carCrash", function () {
     var carCrashAudio = new Audio('audio/car-crash.mp3');
