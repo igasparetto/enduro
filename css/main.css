@@ -94,34 +94,32 @@ h1 span {
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif !important;
 }
+.icon::after {
+  display: block;
+  width: 40px;
+  height: 40px;
+  content: "";
+  background-image: url(../image/icons.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
 #btnLeft .icon::after{
-  content: "\276C";
-  font-size: 65px;
+  background-position: 3px 5px;
 }
 #btnRight .icon::after{
-  content: "\276D";
-  font-size: 65px;
+  background-position: -39px 5px;
 }
-
+#start .icon::after {
+  background-position: 2px -35px;
+}
+.paused #start .icon::after {
+  background-position: -39px -35px;
+}
 #start {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   font-size: 50px;
-}
-#start .icon {
-  min-width: 22px;
-  min-height: 22px;
-}
-#start .icon::after {
-  position: absolute;
-  top: -30px;
-  left: -8px;
-  content: "\23FC";
-  color: rgb(133, 239, 84);
-}
-.paused #start .icon::after {
-  color: rgb(239, 84, 115);
 }
 #btnLeft{border-radius: 60px 10px 10px 60px;}
 #btnRight{border-radius: 10px 60px 60px 10px;}
