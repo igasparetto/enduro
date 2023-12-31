@@ -35,7 +35,7 @@ class Player {
     return this.moveRL(this.carMoveByPixels + this.game.currentSpeed, boundariesPoints);
   }
   actionLeft(boundariesPoints) {
-    return this.moveRL(-this.carMoveByPixels + this.game.currentSpeed, boundariesPoints);
+    return this.moveRL(-(this.carMoveByPixels + this.game.currentSpeed), boundariesPoints);
   }
   isSideCrash(data) {
     for (let i = 0; i < data.length; i++) {
